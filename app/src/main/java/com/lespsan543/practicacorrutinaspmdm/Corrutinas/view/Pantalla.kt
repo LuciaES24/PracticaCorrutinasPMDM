@@ -20,14 +20,15 @@ fun Pantalla(viewModel: PantallaViewModel) {
     val color = viewModel.color
     val isLoading = viewModel.isLoading
 
-    if (isLoading){
-        Column(modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center) {
-            Button(onClick = { viewModel.cambiarColor() },
-                colors = ButtonDefaults.buttonColors(containerColor = color)) {
-                Text(text = "Cambiar color")
-            }
+    Column(modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center) {
+        Button(onClick = { viewModel.cambiarColor() },
+            colors = ButtonDefaults.buttonColors(containerColor = color)) {
+            Text(text = "Cambiar color")
+        }
+        if (isLoading) {
+
             Box(contentAlignment = Alignment.Center,) {
                 CircularProgressIndicator(
                     modifier = Modifier
@@ -35,23 +36,11 @@ fun Pantalla(viewModel: PantallaViewModel) {
                         .align(Alignment.Center)
                 )
             }
-            Button(onClick = { viewModel.fetchData() }) {
-                Text(text = "Llamar API")
-            }
-        }
-    }else{
-        Column(modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center) {
-            Button(onClick = { viewModel.cambiarColor() },
-                colors = ButtonDefaults.buttonColors(containerColor = color)) {
-                Text(text = "Cambiar color")
-            }
+        }else{
             Text(text = viewModel.cambiarTexto())
-            Button(onClick = { viewModel.fetchData() }) {
-                Text(text = "Llamar API")
-            }
+        }
+        Button(onClick = { viewModel.fetchData() }) {
+            Text(text = "Llamar API")
         }
     }
-
 }
