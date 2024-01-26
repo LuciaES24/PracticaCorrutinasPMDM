@@ -1,4 +1,4 @@
-package com.lespsan543.practicacorrutinaspmdm.screens
+package com.lespsan543.practicacorrutinaspmdm.Corrutinas.viewModel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
