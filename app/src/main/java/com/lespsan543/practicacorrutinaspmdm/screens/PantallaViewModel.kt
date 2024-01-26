@@ -27,7 +27,11 @@ class PantallaViewModel : ViewModel() {
     }
 
     fun cambiarTexto(): String{
-        texto = "Respuesta de la API $contador"
+        if (contador == 0){
+            texto = ""
+        }else{
+            texto = "Respuesta de la API $contador"
+        }
         return texto
     }
 }
