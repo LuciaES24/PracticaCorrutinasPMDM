@@ -5,6 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class PantallaViewModel : ViewModel() {
     var color by mutableStateOf(Color.Red)
@@ -21,13 +26,21 @@ class PantallaViewModel : ViewModel() {
         }
     }
 
-    fun bloqueoApp(){
-        Thread.sleep(5000)
+    fun fetchData(){
         contador++
+        viewModelScope.launch {
+            val result = withContext(Dispatchers.IO){
+                delay(5000)
+                "Respuesta de la API $contador"
+            }
+            texto = result
+        }
     }
 
     fun cambiarTexto(): String{
-        texto = "Respuesta de la API $contador"
+        if (contador == 0){
+            texto = ""
+        }
         return texto
     }
 }

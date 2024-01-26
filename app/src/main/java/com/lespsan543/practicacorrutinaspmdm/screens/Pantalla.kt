@@ -22,7 +22,7 @@ fun Pantalla(viewModel: PantallaViewModel) {
             Text(text = "Cambiar color")
         }
         Text(text = viewModel.cambiarTexto())
-        Button(onClick = { viewModel.bloqueoApp() }) {
+        Button(onClick = { viewModel.fetchData() }) {
             Text(text = "Llamar API")
         }
     }
